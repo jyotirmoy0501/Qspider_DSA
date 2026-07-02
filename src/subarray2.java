@@ -26,6 +26,7 @@ public class subarray2 {
         if (overallMaxOdd == Integer.MIN_VALUE) {
             System.out.println("No odd number");
         } else {
+            System.out.println("hi");
             System.out.println("Maximum Odd = " + overallMaxOdd);
         }
     }
