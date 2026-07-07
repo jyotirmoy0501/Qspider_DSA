@@ -14,7 +14,7 @@ public class NonDuplicate {
 
             int[] arr = {4, 1, 2, 1, 2,3,3};
 
-            System.out.println("Non-duplicate element = " + findSingle(arr));
+            System.out.println("duplicate element = " + findSingle(arr));
         }
     }
 
