@@ -10,7 +10,6 @@ public class Evilnumber {
                 }
                 n = n / 2;
             }
-
             return count % 2 == 0;
         }
 
