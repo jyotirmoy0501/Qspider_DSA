@@ -1,25 +1,18 @@
+//everse Number & Sum of Prime Numbers Between the Number and Its Reverse
 import java.util.Scanner;
-
 public class reverseSum {
 
     public static int sumOfPrime(int n) {
-
-        // Reverse the number
         int rev = 0;
         int temp = n;
-
         while (temp > 0) {
             rev = rev * 10 + temp % 10;
             temp = temp / 10;
         }
-
-        // Find the range
         int start = Math.min(n, rev);
         int end = Math.max(n, rev);
 
         int sum = 0;
-
-        // Find prime numbers in the range
         for (int i = start; i <= end; i++) {
 
             if (i < 2)
