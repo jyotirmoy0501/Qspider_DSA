@@ -1,54 +1,53 @@
 package sumofleftleaves;
-
 class Node {
     int data;
     Node left, right;
 
     Node(int data) {
         this.data = data;
-        left = right = null;
+        left = null;
+        right = null;
     }
 }
 
-public class tree4 {
+class tree4 {
 
-    public int sumOfLeftLeaves(Node root) {
+    int sum = 0;
+
+    void traverse(Node root) {
+
         if (root == null)
-            return 0;
+            return;
 
-        int sum = 0;
+        if (root.left != null) {
 
-        if (root.left != null &&
-                root.left.left == null &&
-                root.left.right == null) {
-
-            sum += root.left.data;
+            // Check if left child is a leaf
+            if (root.left.left == null && root.left.right == null) {
+                sum += root.left.data;
+            }
         }
 
-        sum += sumOfLeftLeaves(root.left);
-        sum += sumOfLeftLeaves(root.right);
+        traverse(root.left);
+        traverse(root.right);
+    }
 
+    int sumOfLeftLeaves(Node root) {
+        sum = 0;
+        traverse(root);
         return sum;
     }
 
     public static void main(String[] args) {
 
-        Node root = new Node(10);
-
-        root.left = new Node(26);
+        // Create tree
+        Node root = new Node(3);
+        root.left = new Node(9);
         root.right = new Node(20);
+        root.right.left = new Node(15);
+        root.right.right = new Node(7);
 
-        root.left.left = new Node(2);
-        root.left.right = new Node(5);
-
-        root.right.left = new Node(3);
-        root.right.right = new Node(4);
-
-        root.right.left.left = new Node(8);
         tree4 obj = new tree4();
 
-        int result = obj.sumOfLeftLeaves(root);
-
-        System.out.println("Sum of Left Leaf Nodes = " + result);
+        System.out.println("Sum of Left Leaves = " + obj.sumOfLeftLeaves(root));
     }
 }
