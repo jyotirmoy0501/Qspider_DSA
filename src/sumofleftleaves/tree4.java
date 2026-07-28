@@ -1,7 +1,5 @@
 package sumofleftleaves;
 
-import java.util.Stack;
-
 class Node {
     int data;
     Node left, right;
@@ -14,29 +12,21 @@ class Node {
 
 public class tree4 {
 
-    public static int sumOfLeftLeaves(Node root) {
+    public int sumOfLeftLeaves(Node root) {
         if (root == null)
             return 0;
 
-        Stack<Node> stack = new Stack<>();
-        stack.push(root);
-
         int sum = 0;
 
-        while (!stack.isEmpty()) {
-            Node current = stack.pop();
-            if (current.left != null) {
+        if (root.left != null &&
+                root.left.left == null &&
+                root.left.right == null) {
 
-                if (current.left.left == null && current.left.right == null) {
-                    sum += current.left.data;
-                } else {
-                    stack.push(current.left);
-                }
-            }
-            if (current.right != null) {
-                stack.push(current.right);
-            }
+            sum += root.left.data;
         }
+
+        sum += sumOfLeftLeaves(root.left);
+        sum += sumOfLeftLeaves(root.right);
 
         return sum;
     }
@@ -55,8 +45,9 @@ public class tree4 {
         root.right.right = new Node(4);
 
         root.right.left.left = new Node(8);
+        tree4 obj = new tree4();
 
-        int result = sumOfLeftLeaves(root);
+        int result = obj.sumOfLeftLeaves(root);
 
         System.out.println("Sum of Left Leaf Nodes = " + result);
     }
